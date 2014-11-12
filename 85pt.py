@@ -26,27 +26,44 @@ class MyApp:
 		self.myContainer1.pack()
 		
 		 #left button
-       	        self.left = Button(self.myContainer1)
-       	        self.left.configure(text="left", background= "blue")
-       	        self.left.grid(row=2,column=0)
+       	        self.button1 = Button(self.myContainer1)
+       	        self.button1.configure(text="left", background= "blue")
+       	        self.button1.grid(row=2,column=0)
        	        # Bind an event to the first button
-       	        self.left.bind("<Button-1>", self.leftClicked)
+       	        self.button1.bind("<Button-1>", self.leftClicked)
        	    
        	        #right button
-       	        self.right = Button(self.myContainer1)
-       	        self.right.configure(text="right", background= "red")
-       	        self.right.grid(row=2,column=3)
+       	        self.button2 = Button(self.myContainer1)
+       	        self.button2.configure(text="right", background= "red")
+       	        self.button2.grid(row=2,column=3)
+       	        
        	        # Bind an event to the first button
-       	        self.right.bind("<Button-1>", self.rightClicked)
+       	        self.button2.bind("<Button-1>", self.rightClicked)
 		
 		# "Bind" an action to the first button												
-		self.button1.bind("<Button-1>", self.button1Click)
+		self.button1.bind("<Button-1>", self.leftClicked)
 		 
 		  
 		# This creates the drawpad - no need to change this 
 		drawpad.pack()
 		
-    
+        def leftClicked(self, event):    
+	   global oval 
+	   global drawpad 
+	   global drawpadwidth 
+	   global drawpadheight 
+	   x1,y1,x2,y2 = drawpad.coords(oval)
+	   if x1 > 0:
+	       drawpad.move(oval,-10,0)
+        
+        def rightClicked(self,event):
+            global oval
+            global drawpad
+            global drawpadwidth
+            x1,y1,x2,y2 = drawpad.coords(oval)
+            if x2 < drawpad.winfo_width():
+                drawpad.move(oval,10,0)
+		
 	
 	# Add the button2Click method
 		
